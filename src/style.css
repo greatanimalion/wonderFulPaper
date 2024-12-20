@@ -17,6 +17,7 @@ a:hover {
   width: 100%;
   overflow: hidden;
   font-size: 62.5%;
+  background-color: #212121;
 }
 .vnode{
   position: absolute;
@@ -61,8 +62,9 @@ ul{
   background-color: #878787;
   border-radius: 4px;
 }
-:root::-webkit-scrollbar{
+::-webkit-scrollbar{
   width: 0px;
+  height: 0px;
 }
 .vnode input{
   text-align: center;

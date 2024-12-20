@@ -4,7 +4,8 @@ export type Item = Record<string,{
         description: string,
         value: string
     }[],
-    value: string
+    value: string,
+    unit: string
 }>
 
 export  type Sample = Record<string,{

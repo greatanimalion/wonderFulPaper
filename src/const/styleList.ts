@@ -12,7 +12,6 @@ export default {
     'letter-spacing': { 'descriptions': '字距' },
     'margin': { 'descriptions': '外边距' },
     'border-radius': { 'descriptions': '圆角' },
-    'text-shadow': { 'descriptions': '文本阴影' },
     'z-index': { 'descriptions': '层级' },
     'position': {
         'descriptions': '定位',
@@ -36,46 +35,46 @@ export default {
                 'value': "flex"
             }]
     },
-    'text-decoration': {
-        'descriptions': '文本装饰',
-        'list': [
-            {
-                'description': "无",
-                'value': "none"
-            }, {
-                'description': "下划线",
-                'value': "underline"
-            }, {
-                'description': "上划线",
-                'value': "overline"
-            }, {
-                'description': "删除线",
-                'value': "line-through"
-            }
-        ]
-    },
-    'text-overflow': {
-        'descriptions': '文本溢出',
-        'list': [{
-            'description': "裁剪",
-            'value': "clip"
-        }, {
-            'description': "省略号",
-            'value': "ellipsis"
-        }]
-    },
-    'white-space': {
-        'descriptions': '空白处理',
-        'list': [
-            {
-                'description': "正常",
-                'value': "normal"
-            }, {
-                'description': "不换行",
-                'value': "nowrap"
-            }
-        ]
-    },
+    // 'text-decoration': {
+    //     'descriptions': '文本装饰',
+    //     'list': [
+    //         {
+    //             'description': "无",
+    //             'value': "none"
+    //         }, {
+    //             'description': "下划线",
+    //             'value': "underline"
+    //         }, {
+    //             'description': "上划线",
+    //             'value': "overline"
+    //         }, {
+    //             'description': "删除线",
+    //             'value': "line-through"
+    //         }
+    //     ]
+    // },
+    // 'text-overflow': {
+    //     'descriptions': '文本溢出',
+    //     'list': [{
+    //         'description': "裁剪",
+    //         'value': "clip"
+    //     }, {
+    //         'description': "省略号",
+    //         'value': "ellipsis"
+    //     }]
+    // },
+    // 'white-space': {
+    //     'descriptions': '空白处理',
+    //     'list': [
+    //         {
+    //             'description': "正常",
+    //             'value': "normal"
+    //         }, {
+    //             'description': "不换行",
+    //             'value': "nowrap"
+    //         }
+    //     ]
+    // },
     'text-align': {
         'descriptions': '文本对齐',
         'list': [{
@@ -89,4 +88,4 @@ export default {
             'value': "right"
         }]
     },
-} as Omit<Sample, 'value'>
+} as Omit<Sample, 'value'> 

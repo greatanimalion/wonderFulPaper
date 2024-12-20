@@ -4,6 +4,7 @@ import App from './App.vue'
 import router from '@/router/index'
 import { createPinia } from "pinia";
 import operate from '@/directive'
+import '@icon-park/vue-next/styles/index.css';
 
 // Vuetify
 import 'vuetify/styles'

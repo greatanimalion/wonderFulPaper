@@ -1,5 +1,5 @@
 {
-  "name": "WonderfulPaper",
+  "name": "wonderfulpaper",
   "private": true,
   "version": "0.0.0",
   "type": "module",
@@ -10,8 +10,8 @@
     "test": "vitest"
   },
   "dependencies": {
+    "@icon-park/vue-next": "^1.4.2",
     "@mdi/font": "^7.4.47",
-    "colorfontcolor": "^2.0.3",
     "html2canvas": "^1.4.1",
     "pinia": "^2.1.7",
     "vue": "^3.4.21",

@@ -1,12 +1,10 @@
 <template>
     <layout></layout>
-    <GlobalAlert />
 </template>
 
 <script setup lang="ts">
 import { onMounted } from 'vue';
 import layout from './layout.vue'
-import GlobalAlert from '@/components/Alert.vue'
 
 let muen: HTMLDivElement | null = null;
 onMounted(() => {

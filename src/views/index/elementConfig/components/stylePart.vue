@@ -1,22 +1,48 @@
 <template>
-    <div class="item">
-        <p>文字样式</p>
-        <div class="list">
-            <div class="item"></div>
+    <div class="container">
+        <div class="item">
+            <p>文字样式</p>
+            
+            <v-btn-toggle v-model="textValue" background-color="primary" dark multiple>
+                <v-btn>
+                    1
+                </v-btn>
+
+                <v-btn>
+                    1
+                </v-btn>
+
+                <v-btn>
+                    1
+                </v-btn>
+
+                <v-btn>
+                    1
+                </v-btn>
+            </v-btn-toggle>
         </div>
     </div>
 </template>
 
 <script setup lang="ts">
+// import { AlignTextLeft } from '@icon-park/vue-next';
+import { ref, watch } from 'vue';
+const textValue = ref([0]);
+watch(textValue, (val) => {
+    console.log(val);
+});
 </script>
 
-<style scoped>
-.item {
-    margin: 10px;
-}
 
-p {
-    font-weight: 600;
+<style scoped>
+.container {
+    display: flex;
+    justify-content: center;
+    gap: 5px;
+}
+p{
+    margin: 5px;
     font-size: 0.8rem;
+    font-weight: 600;
 }
 </style>

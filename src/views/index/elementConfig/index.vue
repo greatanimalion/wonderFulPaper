@@ -47,34 +47,28 @@
         </div>
     </div>
 </template> -->
-    <template>
-  <v-card>
-    <v-tabs
-      v-model="tab"
-      align-tabs="center"
-    >
-      <v-tab value="style">样式</v-tab>
-      <v-tab value="animation">动画</v-tab>
-      <v-tab value="event">事件</v-tab>
-    </v-tabs>
-    <v-tabs-window v-model="tab">
-      <v-tabs-window-item style="height: 100vh;"
-        v-for="(i, key) in Object.keys(components)"
-        :key="key"
-        :value="i"
-      >
-      <component :is="components[i]"></component>
-      </v-tabs-window-item>
-    </v-tabs-window>
-  </v-card>
-</template> 
+<template>
+    <v-card style="min-width:270px;">
+        <v-tabs v-model="tab" align-tabs="center">
+            <v-tab value="style">样式</v-tab>
+            <v-tab value="animation">动画</v-tab>
+            <v-tab value="event">事件</v-tab>
+        </v-tabs>
+        <v-tabs-window v-model="tab">
+            <v-tabs-window-item style="height: 100vh;" v-for="(i, key) in Object.keys(components)" :key="key"
+                :value="i">
+                <component :is="components[i]"></component>
+            </v-tabs-window-item>
+        </v-tabs-window>
+    </v-card>
+</template>
 <script setup lang="ts">
-import {ref } from 'vue';
+import { ref } from 'vue';
 import StylePart from './components/stylePart.vue'
 import AnimationPart from './components/animationPart.vue';
 import EventPart from './components/eventPart.vue';
 // import { FormOutlined, BgColorsOutlined, DeploymentUnitOutlined, LockOutlined, UnlockOutlined } from '@ant-design/icons-vue';
-const tab=ref<keyof typeof components>('style')
+const tab = ref<keyof typeof components>('style')
 const components = {
     style: StylePart,
     animation: AnimationPart,
@@ -136,6 +130,4 @@ const components = {
 
 </script>
 
-<style scoped lang="scss">
-
-</style>
+<style scoped lang="scss"></style>

@@ -53,7 +53,7 @@ onMounted(() => {
     width: 100vw;
     display: flex;
     .workspace {
-        width:calc(100vw - 500px);
+        width:calc(100vw - 520px);
         background-color: #ffffff;
     }
 

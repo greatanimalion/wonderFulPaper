@@ -111,8 +111,11 @@ function createPage() {
     overflow: hidden;
     overflow-y: scroll;
     overflow-x: scroll;
-    width: 100%;
     height: calc(100vh - 55px);
+}
+.show-content::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
 }
 
 .add-page {
@@ -122,15 +125,11 @@ function createPage() {
     width: 100%;
     height: 100%;
 }
-
 .content {
     box-shadow: 0 0 3px rgba(0, 0, 0, 0.3);
     background-color: rgb(255, 255, 255);
     position: relative;
     margin: auto;
 
-    &>div {
-        transform-origin: top left;
-    }
 }
 </style>

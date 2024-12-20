@@ -34,7 +34,7 @@ onBeforeMount(() => {
   messageContent.style.top = '5%'
   messageContent.style.left = '50%'
   messageContent.style.transform = 'translateX(-50%)'
-  messageContent.style.width = '250px'
+  messageContent.style.width = 'fit-content'
   messageContent.style.zIndex = '99999'
   document.documentElement.appendChild(messageContent)
 })
@@ -43,38 +43,41 @@ onBeforeMount(() => {
 
 <template>
   <Teleport to="#messageContent">
-    <div v-for="(alert, index) in Array.from(alertMap.values())" class="modal" :key="index" :style="{ backgroundColor: colors[alert.type] }">
-      <div class="icon" v-html="icons[alert.type]"></div>
-      <p>{{ alert.message }}</p>
-    </div>
+    <TransitionGroup name="list">
+      <div v-for="alert in Array.from(alertMap.values())" class="modal" :key="alert.id"
+        :style="{ backgroundColor: colors[alert.type] }">
+        <div class="icon" v-html="icons[alert.type]"></div>
+        <p>{{ alert.message }}</p>
+      </div>
+    </TransitionGroup>
   </Teleport>
 </template>
 
 <style scoped>
 .modal {
   border-radius: 5px;
-  width: 250px;
+  display: flex;
+  justify-content: center;
   padding: 10px;
   font-size: 15px;
   margin-top: 10px;
   text-align: center;
   color: white;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
-  animation: down 0.3s;
 }
 
-@keyframes down {
-  0% {
-    transform: translateY( -30px);
-  }
-
-  100% {
-    transform: translateY( 0);
-  }
+.list-enter-active,
+.list-leave-active {
+  transition: all 0.5s ease;
 }
-
+.list-enter-from,
+.list-leave-to {
+  opacity: 0;
+  transform: translateX(30px);
+}
 p {
   height: 20px;
+  width: fit-content;
   line-height: 20px;
 }
 

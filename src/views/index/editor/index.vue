@@ -1,6 +1,6 @@
 <template>
     <div class="show-content">
-        <div class="add-page" v-if="!page.create">
+        <div class="add-page" v-show="!page.create">
             <div>
                 <v-sheet theme="light" class="mx-auto" width="300">
                     <v-form @submit.prevent>
@@ -11,8 +11,9 @@
                 </v-sheet>
             </div>
         </div>
-        <div v-else class="content" ref="content">
-            <div class="operateContent" :style="{ width: `${page.width}px`, height: `${page.height}px`, position: 'relative' }"
+        <div v-show="page.create" class="content" ref="content">
+            <div class="operateContent"
+                :style="{ width: `${page.width}px`, height: `${page.height}px`, position: 'relative' }"
                 ref="operateContent"></div>
             <Operate ref="operate"></Operate>
         </div>
@@ -20,14 +21,14 @@
 </template>
 <script setup lang="ts">
 import Alert from '@/hooks/useAlert';
-import { nextTick, reactive, ref } from 'vue';
+import { reactive, ref } from 'vue';
 import useLayerImgStore from '@/store/useLayerImgStore';
 import usePageStore from '@/store/usePageStore';
 import useVnodeStore from '@/store/useVnodeStore';
 import Operate from '@/components/Operate.vue';
 import { elementFromPoint } from '@/utils/elementFromPoint';
 import { initHTMLDrag } from '@/hooks/useDrag';
-import simulateClick ,{initContainer}from '@/utils/simulateClick';
+import simulateClick, { initContainer } from '@/utils/simulateClick';
 import useOperateRef from '@/hooks/useOperateRef.ts';
 const content = ref<HTMLDivElement>()
 const operateContent = ref<HTMLDivElement>()
@@ -36,7 +37,7 @@ const vnodeStore = useVnodeStore();
 const layerImgStore = useLayerImgStore();
 const pageStore = usePageStore();
 const operateRef = useOperateRef();
-let pageState: Function;
+// let pageState: Function;
 let zoom = 1;
 let zoomStep = 0.1;
 const page = reactive<{ width: string, height: string, create: boolean }>({
@@ -45,46 +46,42 @@ const page = reactive<{ width: string, height: string, create: boolean }>({
     create: false
 })
 function initPage() {
-    nextTick(() => {
-        vnodeStore.init();
-        content.value!.style.height = page.height + 'px';
-        content.value!.style.width = page.width + 'px';
-        let top = (content.value!.parentElement?.clientHeight || 0) / 2 - (Number(page.height) || 0) / 2;
-        if (top > 0) content.value!.style.top = `${top}px`;
-        layerImgStore.setLayerImg(content.value)
-        initContainer(operateContent.value!)
-    })
+    vnodeStore.init();
+    content.value!.style.height = page.height + 'px';
+    content.value!.style.width = page.width + 'px';
+    let top = (content.value!.parentElement?.clientHeight || 0) / 2 - (Number(page.height) || 0) / 2;
+    if (top > 0) content.value!.style.top = `${top}px`;
+    layerImgStore.setLayerImg(content.value)
+    initContainer(operateContent.value!)
 }
 function createPage() {
-    if (pageStore.init(page.width, page.height)) page.create = true;
-    else return
-    initPage();
+    if (!pageStore.init(page.width, page.height)) return
+    page.create = true;
     //初始化页面
-    nextTick(() => {
-        //初始化鼠标拖拽
-        initHTMLDrag(operateContent.value!)
-        let div: any
-        operateContent.value!.addEventListener('dragover', (event) => {
-            event.preventDefault();
-            let target = elementFromPoint(event)
-            if (target == div) return
-            div=target
-            if(target){
-                if (target.id.startsWith('el')) {
-                    simulateClick(event.clientX, event.clientY)
-                }
-                else {vnodeStore.clearTarget();}
+    initPage();
+    //初始化鼠标拖拽
+    initHTMLDrag(operateContent.value!)
+    let div: any
+    operateContent.value!.addEventListener('dragover', (event) => {
+        event.preventDefault();
+        let target = elementFromPoint(event)
+        if (target == div) return
+        div = target
+        if (target) {
+            if (target.id.startsWith('el')) {
+                simulateClick(event.clientX, event.clientY)
             }
-        });
-        operateContent.value!.addEventListener('drop', (event) => {
-            event.preventDefault();
-            vnodeStore.createSubVnode(vnodeStore.curVnode,{type:event.dataTransfer!.getData('tag') as any})
-            event.dataTransfer!.setData('tag','')
-        })
+            else { vnodeStore.clearTarget(); }
+        }
+    });
+    operateContent.value!.addEventListener('drop', (event) => {
+        event.preventDefault();
+        vnodeStore.createSubVnode(vnodeStore.curVnode, { type: event.dataTransfer!.getData('tag') as any })
+        event.dataTransfer!.setData('tag', '')
     })
     //监听鼠标放大缩小
     window.addEventListener('mousewheel', function (event: any) {
-        if (pageState && pageState(true)) return
+        // if (pageState && pageState(true)) return
         if (!event.ctrlKey) return;
         event.preventDefault();
         let visualSpace = content.value
@@ -101,11 +98,10 @@ function createPage() {
         if (+top > 0) content.value!.style.top = `${top}px`;
         else content.value!.style.top = '0';
         pageStore.scale = zoom;
-        if(vnodeStore.curVnode){
+        if (vnodeStore.curVnode) {
             operateRef.scale(zoom)
-
         }
-    },{passive:false});
+    }, { passive: false });
 }
 
 </script>

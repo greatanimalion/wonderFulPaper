@@ -58,14 +58,12 @@
       <v-tab value="event">事件</v-tab>
     </v-tabs>
     <v-tabs-window v-model="tab">
-      <v-tabs-window-item
-        v-for="component, key in components"
+      <v-tabs-window-item style="height: 100vh;"
+        v-for="(i, key) in Object.keys(components)"
         :key="key"
-        :value="component"
+        :value="i"
       >
-      <keep-alive>
-        <component :is="components[tab]"></component>
-      </keep-alive>
+      <component :is="components[i]"></component>
       </v-tabs-window-item>
     </v-tabs-window>
   </v-card>
@@ -81,7 +79,7 @@ const components = {
     style: StylePart,
     animation: AnimationPart,
     event: EventPart,
-};
+} as Record<string, any>;
 // import useVnodeStore from '@/store/useVnodeStore';
 // import parseCssToObject from '@/utils/parseCssToObject';
 // import styleSheet from '@/const/styleList';

@@ -74,6 +74,14 @@ const components = {
     animation: AnimationPart,
     event: EventPart,
 } as Record<string, any>;
+
+</script>
+
+
+
+
+
+
 // import useVnodeStore from '@/store/useVnodeStore';
 // import parseCssToObject from '@/utils/parseCssToObject';
 // import styleSheet from '@/const/styleList';
@@ -128,6 +136,4 @@ const components = {
 //     }
 // })
 
-</script>
 
-<style scoped lang="scss"></style>

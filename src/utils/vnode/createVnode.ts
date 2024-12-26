@@ -4,6 +4,15 @@ import { useElementStyleStore } from "@/store";
 import { Vnode, VnodeOptions } from "@/types/Vnode";
 import VnodeStore from "@/store/useVnodeStore";
 
+export const vnodeFlag={
+    TEXT:1,
+    SVG:1<<1,
+    INPUT:1<<2,
+    DIV:1<<3,
+    CANVAS:1<<4,
+    IMG:1<<5,
+    UNKNOW:1<<6,
+}
 
 export const createNodeHTML = (vnode: Vnode): HTMLDivElement => {
     let element = document.createElement(vnode.type) as HTMLDivElement

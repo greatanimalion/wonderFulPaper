@@ -1,6 +1,6 @@
 import { drawBezierCurveFromParent } from "@/hooks/useDraw";
 import { useElementStyleStore } from "@/store";
-import { Vnode, VnodeOptions } from "@/types/Vnode";
+import { Vnode, VnodeOptions,ElementType } from "@/types/Vnode";
 import VnodeStore from "@/store/useVnodeStore";
 
 let _id=0
@@ -10,18 +10,30 @@ export function creatUUID():number{
 export function creatUUIDToString():string{
     return creatUUID().toString()
 }
-export const vnodeFlag={
-    TEXT:1,
-    SVG:1<<1,
-    INPUT:1<<2,
-    DIV:1<<3,
-    CANVAS:1<<4,
-    IMG:1<<5,
-    UNKNOW:1<<6,
+
+export const getTag=(type:ElementType)=>{
+    switch (type) {
+        case ElementType.DIV:
+            return 'div'
+        case ElementType.INPUT:
+            return 'input'
+        case ElementType.TEXTAREA:
+            return 'textarea'
+        case ElementType.IMG:
+            return 'img'
+        case ElementType.CANVAS:
+            return 'canvas'
+        case ElementType.AUDIO:
+            return 'audio'
+        case ElementType.VIDEO:
+            return 'video'
+        default:
+            return 'div'
+    }
 }
 
 export const createNodeHTML = (vnode: Vnode): HTMLDivElement => {
-    let element = document.createElement(vnode.type) as HTMLDivElement
+    let element = document.createElement(getTag(vnode.type)) as HTMLDivElement
     element.id = "el" + vnode.id
     element.style.cssText=vnode.style
     element.style.top = vnode.top + 'px'
@@ -29,11 +41,11 @@ export const createNodeHTML = (vnode: Vnode): HTMLDivElement => {
     element.style.width = vnode.width + 'px'
     element.style.height = vnode.height + 'px'
     element.style.position = vnode.parent?.drag ? 'absolute' : 'relative'
-    if (vnode.type == 'input') element.setAttribute('autocomplete', 'off')
+    if (vnode.type == ElementType.INPUT) element.setAttribute('autocomplete', 'off')
     return element
 }
 export const createVnodeHTML = (vnode: Vnode) => {
-    let element = document.createElement(vnode.type) as HTMLDivElement;
+    let element = document.createElement(getTag(vnode.type)) as HTMLDivElement;
     element.className='vnode'+vnode.id;
     element.innerText=""+(vnode.name||vnode.id);
     vnode.name=String(vnode.id);
@@ -59,7 +71,7 @@ function vnodeFactory(options: VnodeOptions, parent: Vnode | null, style: string
         left: options.left || 0,
         width: options.width || 80,
         height: options.height || 40,
-        type: options.type || 'div',
+        type: options.type || ElementType.DIV,
         style: style,
         events: {},
         vHTML: null,
@@ -71,7 +83,7 @@ function vnodeFactory(options: VnodeOptions, parent: Vnode | null, style: string
 function createVnode(options: any) {
     let curVnode = VnodeStore().curVnode;
     let styleStore = useElementStyleStore();
-    let style = styleStore.getCommonElementStyle(options.type || 'div');
+    let style = styleStore.getCommonElementStyle(getTag(options.type));
     let parentNode= curVnode ||VnodeStore().plainVnode[0]|| null;
     let container: HTMLDivElement=curVnode?.HTML||document.querySelector<HTMLDivElement>('.operateContent')!;
     let vnode = vnodeFactory(options,parentNode, style);

@@ -27,6 +27,7 @@
 <script setup lang="ts">
 // import { AlignTextLeft } from '@icon-park/vue-next';
 import { ref, watch } from 'vue';
+import { ElementType } from '@/types/Vnode';
 import DivType from './ELementType/DivType.vue';
 import ImgType from './ELementType/ImgType.vue';
 

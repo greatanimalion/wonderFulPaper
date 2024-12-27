@@ -1,8 +1,9 @@
 <template>
     <div class="contain">
-        <CloseSquareOutlined
-            style="color: white;font-size: 40px;cursor: pointer;position: absolute;top: 10px;right: 10px;z-index: 9;"
-            ref="Openref" @click="() => { pageStore.closeVnodePage() }" />
+        <close-one theme="outline" size="32" fill="#ffffff" 
+        style="cursor: pointer;position: absolute;top: 10px;right: 10px;z-index: 9;"
+        @click="() => { pageStore.closeVnodePage() }"
+        />
         <div ref="contain" class="contain-box" width="200" height="100"></div>
         <svg class="svg"></svg>
         <canvas ref="canvas"></canvas>
@@ -14,11 +15,10 @@ import {  Ref, ref } from 'vue';
 import { VnodeDrag } from '@/hooks/useDrag';
 import drawGrid from '@/hooks/useDraw';
 import { onMounted } from 'vue';
-import { CloseSquareOutlined } from '@ant-design/icons-vue'
 import usePageStore from '@/store/usePageStore';
+import { CloseOne } from '@icon-park/vue-next';
 const pageStore = usePageStore();
 const canvas = ref<HTMLCanvasElement>();
-const Openref = ref<HTMLDivElement>()
 const contain = ref<HTMLDivElement>();
 let resizeRender = () => {
     drawGrid(canvas as Ref<HTMLCanvasElement>);

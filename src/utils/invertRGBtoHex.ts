@@ -1,5 +1,5 @@
 /**
- * 由于cssText自动将color值转换为rgb而input的type=color时,value属性只接受hex,所以需要将其转换为hex
+ * 由于cssText自动将color值转换为rgb而input的type=color时,value属性只接受hex,所以需要将其转换为hex,可以使用 tinycolor2代替
  * @param {string} rgb //rgb格式的颜色值
  * @returns {string} hex格式的颜色值
 */

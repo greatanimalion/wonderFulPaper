@@ -12,10 +12,10 @@ function handleSuffix(s: string, key: 'width' | 'height') {
 /**
  * 处理input的blur事件
 */
-let handleBlur: (value: string, key: string,oldValue?:string) => void;
+let handleBlur: (value: string, key: string,unit:string,oldValue?:string) => void;
 export function useBlur() {
     const vnodeStore = useVnodeStore();
-    if (!handleBlur) handleBlur = (value: string, key: string,oldValue?:string) => {
+    if (!handleBlur) handleBlur = (value: string, key: string,unit:string='',oldValue?:string) => {
         if (!vnodeStore.curVnode) return;
         if(oldValue&&value == oldValue) return;
         vnodeStore.curVnode.HTML!.style[key as any] = value;

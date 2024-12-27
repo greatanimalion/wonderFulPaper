@@ -1,5 +1,6 @@
 import { defineStore } from "pinia";
 import Alert from '@/hooks/useAlert';
+import  useVnodeStore  from './useVnodeStore'
 const usePageStore = defineStore("pages", {
     state: () => ({
         width: "",
@@ -25,10 +26,13 @@ const usePageStore = defineStore("pages", {
         openVnodePage() {
             this.vnodePage =true
             document.querySelector<HTMLDivElement>('#vnodePage')!.style.display = 'block'
+            useVnodeStore().clearTarget()
         },
         closeVnodePage() {
-            document.querySelector<HTMLDivElement>('#vnodePage')!.style.display = 'none'
             this.vnodePage = false
+            document.querySelector<HTMLDivElement>('#vnodePage')!.style.display = 'none'
+            useVnodeStore().clearTarget()
+
         }
     }
 })

@@ -1,4 +1,5 @@
 import { LayoutType } from "@/types/Vnode"
+//模板阳历
 export const containType = {
     name: '宽松布局',
     type: 'div',

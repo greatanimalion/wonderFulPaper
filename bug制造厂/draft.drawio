@@ -1,0 +1,22 @@
+<mxfile host="65bd71144e">
+    <diagram id="5v0t8fS2frTwdBPv0ft5" name="第 1 页">
+        <mxGraphModel dx="958" dy="693" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+            <root>
+                <mxCell id="0"/>
+                <mxCell id="1" parent="0"/>
+                <mxCell id="3" value="vnode" style="ellipse;whiteSpace=wrap;html=1;aspect=fixed;" parent="1" vertex="1">
+                    <mxGeometry x="80" y="60" width="80" height="80" as="geometry"/>
+                </mxCell>
+                <mxCell id="6" value="" style="shape=curlyBracket;whiteSpace=wrap;html=1;rounded=1;labelPosition=left;verticalLabelPosition=middle;align=right;verticalAlign=middle;" parent="1" vertex="1">
+                    <mxGeometry x="170" y="40" width="20" height="120" as="geometry"/>
+                </mxCell>
+                <mxCell id="7" value="id" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" parent="1" vertex="1">
+                    <mxGeometry x="185" y="25" width="30" height="30" as="geometry"/>
+                </mxCell>
+                <mxCell id="10" value="state" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" parent="1" vertex="1">
+                    <mxGeometry x="175" y="45" width="50" height="30" as="geometry"/>
+                </mxCell>
+            </root>
+        </mxGraphModel>
+    </diagram>
+</mxfile>

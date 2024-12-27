@@ -1,6 +1,14 @@
-export  type ElementType="div"|"button" | "textarea" | "audio" | "form" | "label" | "link" | "table" | "video" | "img" | "input" | "checkbox" | "radio" | "span";
-
-export interface Vnode  {
+// export  type ElementType="div"| "textarea" | "audio" |"video" | "img" | "input";
+export enum ElementType {
+    DIV=1,
+    TEXTAREA=1<<1,
+    AUDIO=1<<2,
+    VIDEO=1<<3,
+    IMG=1<<4,
+    INPUT=1<<5,
+    CANVAS=1<<6,
+}
+export interface Vnode {
     id: number;
     name: string;
     //dom的位置
@@ -13,7 +21,7 @@ export interface Vnode  {
     vLeft: number;
     vWidth: number;
     vHeight: number;
-    
+
     type: ElementType;
     style: string;
     events: { [key: string]: () => void };
@@ -21,7 +29,7 @@ export interface Vnode  {
 
     children: Vnode[];
     parent: Vnode | null;
-    
+
     lineToParent?: any;
 
     HTML: HTMLDivElement | null;
@@ -31,10 +39,10 @@ export type VnodeOptions = Partial<Vnode>;
 
 export type plainVnode = Vnode[]
 
-export type LayoutType={
-    name:string,
-    type:string,
-    style:Record<string,string>,
-    text?:string,
-    sub?:LayoutType[]
+export type LayoutType = {
+    name: string,
+    type: string,
+    style: Record<string, string>,
+    text?: string,
+    sub?: LayoutType[]
 }

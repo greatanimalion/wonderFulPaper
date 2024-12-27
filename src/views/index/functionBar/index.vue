@@ -1,30 +1,30 @@
 <template>
     <div class="tool-bar">
         <Tooltip title="更多">
-            <UnorderedListOutlined style="font-size: 25px;" />
+            <application-menu theme="outline" size="24" fill="white"/>
         </Tooltip>
         <Tooltip title="撤销">
-            <RollbackOutlined style="font-size: 25px;" />
+            <back theme="outline" size="24" fill="#ffffff"/>
         </Tooltip>
 
         <Tooltip title="恢复">
-            <RetweetOutlined style="font-size: 25px;" />
+            <next theme="outline" size="24" fill="white"/>
         </Tooltip>
 
         <Tooltip title="拖拽">
-            <DragOutlined style="font-size: 25px;" />
+            <direction theme="outline" size="24" fill="#ffffff"/>
         </Tooltip>
         <Tooltip title="添加节点" @click.native="handleClick()">
-            <PlusSquareOutlined style="font-size: 25px;" />
+            <add-three theme="outline" size="24" fill="#ffffff"/>
         </Tooltip>
         <Tooltip title="帮助">
-            <QuestionCircleOutlined style="font-size: 25px;" />
+            <help theme="outline" size="24" fill="#ffffff"/>
         </Tooltip>
     </div>
 </template>
 
 <script setup lang="ts">
-import { UnorderedListOutlined, DragOutlined, RollbackOutlined, RetweetOutlined, PlusSquareOutlined,QuestionCircleOutlined } from '@ant-design/icons-vue';
+import {ApplicationMenu ,Next,Back,Direction,AddThree,Help} from '@icon-park/vue-next'
 import Tooltip from '@/components/Tooltip.vue';
 
 import usePageStore from '@/store/usePageStore';

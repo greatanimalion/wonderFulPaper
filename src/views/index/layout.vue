@@ -20,7 +20,7 @@ import { onMounted, ref } from 'vue';
 import Material from './material/index.vue';
 import ElementConfig from './elementConfig/index.vue';
 import Editor from './editor/index.vue';
-import colorFont from 'colorfontcolor';
+// import colorFont from 'colorfontcolor';
 import FunctionBar from './functionBar/index.vue';
 import Vnode from "./vnode/index.vue"
 import Menu from '@/components/Menu.vue';
@@ -36,7 +36,7 @@ const logo = ref('logo')
 */
 
 onMounted(() => {
-    colorFont(logo.value, { duration: 3, color: ['#a7a7a7', '#9efb7d', '#fb7def', '#7dc0fb'] })
+    // colorFont(logo.value, { duration: 3, color: ['#a7a7a7', '#9efb7d', '#fb7def', '#7dc0fb'] })
     window.addEventListener('keydown', (e) => {
         if (e.ctrlKey && e.key == 'q') {
             if (!pageStore.created) return Alert('error','请先创建页面！')
@@ -53,12 +53,12 @@ onMounted(() => {
     width: 100vw;
     display: flex;
     .workspace {
-        width:calc(100vw - 500px);
+        width:calc(100vw - 520px);
         background-color: #ffffff;
     }
 
     .config {
-        min-width: 250px;
+        min-width: 270px;
         flex-basis: 0;
     }
 

@@ -32,7 +32,7 @@ css,html,js都是基础，考虑到大项目就要使用ts做语言提示，要�
 
 
 ## 项目建立(Project Setup)
-用vite构建vue3项目，UI选择 Ant Design Vue，store选择pina(主要是方便，不用mutation那些之类的),拖拽库使用Vue drag resize(轻量级，无依赖，可缩放)
+用vite构建vue3项目，UI选择 Vuetify，store选择pina(主要是方便),根据elementfrompoint手写拖拽
 
 ## 结束语
 欢迎给位大佬给出优秀建议，也希望能帮助到更多的非开发人员

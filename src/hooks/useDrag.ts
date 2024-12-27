@@ -52,7 +52,7 @@ export function VnodeDrag(contain: Ref<HTMLDivElement>) {
    }
    function click(e: any) {
       if (preElement) {
-         preElement.style.boxShadow = 'none'
+         preElement.style.color = 'black'
          VnodeStore.clearTarget()
          preElement = null;
       }
@@ -61,7 +61,7 @@ export function VnodeDrag(contain: Ref<HTMLDivElement>) {
       let id=+target.className.slice(5)
       if(id==0)return
       VnodeStore.setTarget(VnodeStore.findVnode(id))
-      target!.style.boxShadow = "0 0 14px 2px white";
+      target!.style.color = "#ff004a";
       preElement = target;
       target.addEventListener('mousedown', MouseDown);
       target.addEventListener('mouseup', stop);
@@ -73,6 +73,7 @@ export function VnodeDrag(contain: Ref<HTMLDivElement>) {
       input.classList.add('inherit-input');
       input.type = 'text';
       input.value = element.innerText;
+      input.style.width = `${element.offsetWidth}px`;
       element.innerHTML = '';
       element.appendChild(input);
       input.focus();

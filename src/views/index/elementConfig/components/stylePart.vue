@@ -4,7 +4,7 @@
             <p>文字样式</p>
 
             <v-btn-toggle v-model="textValue" background-color="primary" dark multiple>
-                <v-btn>
+                <v-btn >
                     1
                 </v-btn>
 

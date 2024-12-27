@@ -36,17 +36,8 @@ function doThing(action:Action){
 }
 
 
-/**
- * @param {string} pageId 要删除的页面ID
- * @description: 删除某个页面时，将所有栈中的操作都删除
-*/
-function deletePage(pageId:number){
-    revocationStack = revocationStack.filter(action=>action.pageId!==pageId)
-    reinstatementStack = reinstatementStack.filter(action=>action.pageId!==pageId)
-}
 export default {
     doThing,
     revocation,
     reinstatement,
-    deletePage
 }

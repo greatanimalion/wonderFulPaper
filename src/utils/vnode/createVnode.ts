@@ -1,9 +1,15 @@
 import { drawBezierCurveFromParent } from "@/hooks/useDraw";
-import { creatUUID } from "../creatUUID";
 import { useElementStyleStore } from "@/store";
 import { Vnode, VnodeOptions } from "@/types/Vnode";
 import VnodeStore from "@/store/useVnodeStore";
 
+let _id=0
+export function creatUUID():number{
+    return _id++
+}
+export function creatUUIDToString():string{
+    return creatUUID().toString()
+}
 export const vnodeFlag={
     TEXT:1,
     SVG:1<<1,
@@ -30,7 +36,7 @@ export const createVnodeHTML = (vnode: Vnode) => {
     let element = document.createElement(vnode.type) as HTMLDivElement;
     element.className='vnode'+vnode.id;
     element.innerText=""+(vnode.name||vnode.id);
-    vnode.name=''+vnode.id;
+    vnode.name=String(vnode.id);
     element.style.cssText='background-color: #fff;border-radius: 5px;padding: 5px;position: absolute;z-index: 10';
     element.style.top = vnode.vTop + 'px';
     element.style.left = vnode.vLeft + 'px';

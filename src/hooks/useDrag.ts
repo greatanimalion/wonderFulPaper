@@ -7,7 +7,6 @@ import debounce from "@/utils/debounce";
 import useOperateRef from "./useOperateRef.ts";
 import { drawBezierCurveFromParent } from "./useDraw.js";
 let offsetX: number, offsetY: number;
-let target: HTMLDivElement | null;
 let preElement: HTMLDivElement | null = null;
 const operateRef = useOperateRef();
 /**
@@ -110,14 +109,14 @@ export function initHTMLDrag(contain: HTMLDivElement) {
    }, 5000)
    let mouseDownELement: HTMLDivElement | null = null
    contain.onclick = (e: MouseEvent) => {
+      let target = VnodeStore.curHTML;
       let curTarget = elementFromPoint(e);
       if (curTarget == target) return
-      if (curTarget?.id.startsWith('el')) {
+      if (curTarget?.id.startsWith('el')) {//判断是否是编辑元素
          if (target) target.classList.remove('move');
-         target = curTarget!
-         VnodeStore.setTarget(VnodeStore.findVnode(+target.id.replace('el', '')))
+         VnodeStore.setTarget(VnodeStore.findVnode(+curTarget.id.replace('el', '')))
          if (VnodeStore.curVnode?.drag){
-            target.classList.add('move');
+            curTarget.classList.add('move');
          }
          return;
       }
@@ -129,6 +128,7 @@ export function initHTMLDrag(contain: HTMLDivElement) {
    }
    function mousedown(e: MouseEvent) {
       e.preventDefault();
+      let target = VnodeStore.curHTML;
       if (!target) return;
       mouseDownELement = elementFromPoint(e);
       if (mouseDownELement !== target) return mouseDownELement = null;
@@ -141,6 +141,7 @@ export function initHTMLDrag(contain: HTMLDivElement) {
    }
    function mousemove(e: MouseEvent) {   
       e.preventDefault();   
+      let target = VnodeStore.curHTML;
       if (!VnodeStore.curVnode||!VnodeStore.curVnode.drag) return;
       if (mouseDownELement !== target) return
       const diffX=e.clientX - dragState.startX
@@ -157,11 +158,12 @@ export function initHTMLDrag(contain: HTMLDivElement) {
       setLayerImg()
    }
    function stop() {
-      if (!target || !mouseDownELement) return
+      let target = VnodeStore.curHTML;
+      let curVnode = VnodeStore.curVnode
+      if (!target || !mouseDownELement||!curVnode) return
       mouseDownELement = null;
-      let curVnode = VnodeStore.curVnode!
-      curVnode.top = parseFloat(target!.style.top)
-      curVnode.left = parseFloat(target!.style.left)
+      curVnode.top = parseFloat(target.style.top)
+      curVnode.left = parseFloat(target.style.left)
    }
    contain.addEventListener("mousedown", mousedown);
    contain.addEventListener("mousemove", mousemove);

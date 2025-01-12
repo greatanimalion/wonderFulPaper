@@ -1,7 +1,7 @@
 <template>
     <div class="layout">
         <div class="material">
-            <div class="logo"><span ref="logo">wonderful</span>Paper</div>
+            <div class="logo">wonderfulPaper</div>
             <Material></Material>
         </div>
         <div class="workspace">
@@ -16,7 +16,7 @@
     <Menu></Menu>
 </template>
 <script lang="ts" setup>
-import { onMounted, ref } from 'vue';
+import { onMounted} from 'vue';
 import Material from './material/index.vue';
 import ElementConfig from './elementConfig/index.vue';
 import Editor from './editor/index.vue';
@@ -28,7 +28,6 @@ import Menu from '@/components/Menu.vue';
 import usePageStore from '@/store/usePageStore';
 import Alert from '@/hooks/useAlert';
 const pageStore = usePageStore()
-const logo = ref('logo')
 
 /**
  * 打开vnode

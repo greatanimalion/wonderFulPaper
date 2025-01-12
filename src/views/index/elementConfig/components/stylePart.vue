@@ -5,15 +5,15 @@
 
             <v-btn-toggle v-model="textValue" background-color="primary" dark multiple>
                 <v-btn >
-                    1
+                    居中
                 </v-btn>
 
                 <v-btn>
-                    1
+                    居右
                 </v-btn>
 
                 <v-btn>
-                    1
+                    居左
                 </v-btn>
 
                 <v-btn>

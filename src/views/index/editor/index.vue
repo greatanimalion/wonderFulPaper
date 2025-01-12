@@ -20,6 +20,7 @@
     </div>
 </template>
 <script setup lang="ts">
+import { onMounted } from 'vue';
 import Alert from '@/hooks/useAlert';
 import { reactive, ref } from 'vue';
 import useLayerImgStore from '@/store/useLayerImgStore';
@@ -37,7 +38,6 @@ const vnodeStore = useVnodeStore();
 const layerImgStore = useLayerImgStore();
 const pageStore = usePageStore();
 const operateRef = useOperateRef();
-// let pageState: Function;
 let zoom = 1;
 let zoomStep = 0.1;
 const page = reactive<{ width: string, height: string, create: boolean }>({
@@ -81,7 +81,6 @@ function createPage() {
     })
     //监听鼠标放大缩小
     window.addEventListener('mousewheel', function (event: any) {
-        // if (pageState && pageState(true)) return
         if (!event.ctrlKey) return;
         event.preventDefault();
         let visualSpace = content.value
@@ -103,7 +102,27 @@ function createPage() {
         }
     }, { passive: false });
 }
-
+//重写右键菜单
+let muen: HTMLDivElement | null = null;
+onMounted(() => {
+    let container = document.querySelector<HTMLDivElement>('.show-content')!
+    container.addEventListener('contextmenu', function (e) {
+        e.preventDefault();
+    });
+    container.addEventListener('mousedown', function (e) {
+        if (e.button === 2) {
+            muen = muen || document.querySelector<HTMLDivElement>('#menu-vnode')!
+            muen.style.display = 'block'
+            muen.style.left = e.clientX + 'px'
+            muen.style.top = e.clientY + 'px'
+        }
+        else {
+            setTimeout(() => {
+                if (muen) muen.style.display = 'none'
+            }, 100)
+        }
+    })
+})
 </script>
 <style scoped lang="scss">
 .show-content {
@@ -113,9 +132,10 @@ function createPage() {
     overflow-x: scroll;
     height: calc(100vh - 55px);
 }
+
 .show-content::-webkit-scrollbar {
-  width: 8px;
-  height: 8px;
+    width: 8px;
+    height: 8px;
 }
 
 .add-page {
@@ -125,6 +145,7 @@ function createPage() {
     width: 100%;
     height: 100%;
 }
+
 .content {
     box-shadow: 0 0 3px rgba(0, 0, 0, 0.3);
     background-color: rgb(255, 255, 255);

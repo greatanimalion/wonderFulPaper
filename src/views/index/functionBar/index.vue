@@ -14,7 +14,7 @@
         <Tooltip title="拖拽">
             <direction theme="outline" size="24" fill="#ffffff"/>
         </Tooltip>
-        <Tooltip title="添加节点" @click.native="handleClick()">
+        <Tooltip title="查看节点" @click.native="handleClick()">
             <add-three theme="outline" size="24" fill="#ffffff"/>
         </Tooltip>
         <Tooltip title="帮助">

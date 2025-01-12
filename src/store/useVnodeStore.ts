@@ -18,11 +18,12 @@ const VnodeStore = defineStore("useVnodeStore", {
         plainVnode: plainVnode,
         VnodeTree: Vnode | null,
         curVnode: Vnode | null,
-
+        curHTML: HTMLDivElement | null,
     } => ({
         plainVnode: [],
         VnodeTree: null,
-        curVnode: null
+        curVnode: null,
+        curHTML: null
     }),
     actions: {
         findVnode(id: number) {
@@ -46,8 +47,10 @@ const VnodeStore = defineStore("useVnodeStore", {
         },
         setTarget(target: Vnode) {
             this.curVnode = target
+            this.curHTML = target.HTML
         },
         clearTarget() {
+            this.curHTML = null
             this.curVnode = null
         },
         /**

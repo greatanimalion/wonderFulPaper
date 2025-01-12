@@ -1,9 +1,8 @@
 <template>
     <div class="contain">
-        <close-one theme="outline" size="32" fill="#ffffff" 
-        style="cursor: pointer;position: absolute;top: 10px;right: 10px;z-index: 9;"
-        @click="() => { pageStore.closeVnodePage() }"
-        />
+        <close-one theme="outline" size="32" fill="#ffffff"
+            style="cursor: pointer;position: absolute;top: 10px;right: 10px;z-index: 9;"
+            @click="() => { pageStore.closeVnodePage() }" />
         <div ref="contain" class="contain-box" width="200" height="100"></div>
         <svg class="svg"></svg>
         <canvas ref="canvas"></canvas>
@@ -11,7 +10,7 @@
 </template>
 
 <script setup lang="ts">
-import {  Ref, ref } from 'vue';
+import { Ref, ref } from 'vue';
 import { VnodeDrag } from '@/hooks/useDrag';
 import drawGrid from '@/hooks/useDraw';
 import { onMounted } from 'vue';
@@ -27,7 +26,7 @@ onMounted(() => {
     drawGrid(canvas as Ref<HTMLCanvasElement>);
     VnodeDrag(contain as Ref<HTMLDivElement>)
     window.addEventListener('resize', resizeRender)
-        pageStore.closeVnodePage()
+    pageStore.closeVnodePage();
 })
 </script>
 
@@ -60,5 +59,4 @@ svg {
     font-size: 1rem;
     font-weight: 600;
 }
-
 </style>

@@ -1,25 +1,40 @@
 <template>
     <ul id="menu-vnode">
-        <li @click="addVnode"><div></div><div>创建子节点</div></li>
-        <li @click="deleteVnode"><div></div><div>删除节点</div></li>
+        <li @click="normalAction('add')"><div></div><div>创建子节点</div></li>
+        <li @click="normalAction('delete')"><div></div><div>删除节点</div></li>
     </ul>
 </template>
 
 <script setup lang="ts">
 import useVnodeStroe from '@/store/useVnodeStore'
 import Alert from '@/hooks/useAlert';
-
+import { ElementType } from "@/types/Vnode";
+import usePageStore from '@/store/usePageStore'
 const VnodeStroe =useVnodeStroe();
+const PageStroe =usePageStore();
 function addVnode(e: MouseEvent){ 
+    if(!PageStroe.created)return Alert('error','请先创建页面'); 
     let parentVnode = VnodeStroe.curVnode;
-    if(!parentVnode)Alert('info','已默认以根节点创建子节点');    
-    VnodeStroe.createSubVnode(parentVnode,{vTop:e.clientY,vLeft:e.clientX,type:'div'});    
+    if(!parentVnode)Alert('info','已默认以根节点创建子节点');  
+    VnodeStroe.createSubVnode(parentVnode,{vTop:e.clientY,vLeft:e.clientX,type:ElementType.DIV});    
 }
 function deleteVnode(){
     let curVnode = VnodeStroe.curVnode;
     if(!curVnode)return Alert('error','请选择删除节点');
     VnodeStroe.deleteVnode();
     Alert('success','删除成功')
+}
+type ActionType = 'add' | 'delete'
+function normalAction(type:ActionType){
+    switch(type){
+        case 'add':
+            addVnode(new MouseEvent('click'));
+            break;
+        case 'delete':
+            deleteVnode();
+            break;
+    }
+    document.querySelector<HTMLDivElement>('#menu-vnode')!.style.display = 'none';
 }
 </script>
 

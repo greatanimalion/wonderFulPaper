@@ -6,8 +6,8 @@ const usePageStore = defineStore("pages", {
         width: "",
         heigth: "",
         scale: 1,
-        created: false,
-        vnodePage: false
+        created: false,//页面是否创建
+        vnodePage: false//当前显示的是否是虚拟节点页面
     }),
     actions: {
         init(width: string, heigth: string) {
@@ -26,6 +26,7 @@ const usePageStore = defineStore("pages", {
         openVnodePage() {
             this.vnodePage =true
             document.querySelector<HTMLDivElement>('#vnodePage')!.style.display = 'block'
+            useVnodeStore().curHTML?.classList.remove('move')
             useVnodeStore().clearTarget()
         },
         closeVnodePage() {

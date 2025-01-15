@@ -64,21 +64,20 @@ defineProps({
       height: 30px;
       margin: 5px 0;
       display: flex;
-
       span {
             font-size: 14px;
+            display: inline-block;
             padding: 0 5px;
             text-align: center;
             color: rgb(203, 203, 203);
             line-height: 30px;
       }
-
       span:first-child {
             width: 100px;
       }
 
       span:last-child {
-            width: 20px;
+            width: 40px;
       }
 
       input {

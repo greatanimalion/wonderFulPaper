@@ -20,7 +20,6 @@ import { onMounted} from 'vue';
 import Material from './material/index.vue';
 import ElementConfig from './elementConfig/index.vue';
 import Editor from './editor/index.vue';
-// import colorFont from 'colorfontcolor';
 import FunctionBar from './functionBar/index.vue';
 import Vnode from "./vnode/index.vue"
 import Menu from '@/components/Menu.vue';

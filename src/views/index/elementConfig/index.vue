@@ -1,52 +1,3 @@
-<!-- <template>
-    <div class="define-event event">
-        <div class="event-title">
-            <v-btn width="100%" color="black">
-                <BgColorsOutlined />定义事件
-            </v-btn>
-            <div>
-
-            </div>
-        </div>
-    </div>
-    <div class="modify-style event">
-        <div class="event-title">
-            <v-btn width="49%" style="margin-right: 2%;" color="black">
-                <FormOutlined />添加样式
-            </v-btn>
-            <div style="display: inline-block;" width="49%" @click="handleLock">
-                <v-btn v-if="lockEl" color="black">
-                    <LockOutlined />元素嵌入
-                </v-btn>
-                <v-btn v-else color="black">
-                    <UnlockOutlined />元素游动
-                </v-btn>
-            </div>
-        </div>
-          <div class="modify-style-content">
-            <div v-show="!!vnodeStore.curVnode">
-                <div class="item">
-                    <VCombobox ENname="height" :modelValue="TLHW.height" ZHname="高度" unit="px"></VCombobox>
-                    <VCombobox ENname="width" :modelValue="TLHW.width" ZHname="宽度" unit="px"></VCombobox>
-                    <VCombobox ENname="top" :modelValue="TLHW.top" ZHname="相对上侧" unit="px"></VCombobox>
-                    <VCombobox ENname="left" :modelValue="TLHW.left" ZHname="相对左侧" unit="px"></VCombobox>
-                </div>
-                <div class="item" v-for="key, index in Object.keys(finalStyle)" :key="index"
-                    v-show="finalStyle[key].value !== ''">
-                    <VCombobox :list="finalStyle[key].list" :ZHname="finalStyle[key].descriptions" :ENname="key"
-                        :modelValue="finalStyle[key].value" :unit="finalStyle[key].unit"></VCombobox>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="add-animation event">
-        <div class="event-title">
-            <v-btn width="100%" color="black">
-                <DeploymentUnitOutlined />添加动画
-            </v-btn>
-        </div>
-    </div>
-</template> -->
 <template>
     <v-card style="min-width:270px;">
         <v-tabs v-model="tab" align-tabs="center">
@@ -67,7 +18,6 @@ import { ref } from 'vue';
 import StylePart from './components/stylePart.vue'
 import AnimationPart from './components/animationPart.vue';
 import EventPart from './components/eventPart.vue';
-// import { FormOutlined, BgColorsOutlined, DeploymentUnitOutlined, LockOutlined, UnlockOutlined } from '@ant-design/icons-vue';
 const tab = ref<keyof typeof components>('style')
 const components = {
     style: StylePart,

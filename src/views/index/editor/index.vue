@@ -13,9 +13,9 @@
         </div>
         <div v-show="page.create" class="content" ref="content">
             <div class="operateContent"
-                :style="{ width: `${page.width}px`, height: `${page.height}px`, position: 'relative' }"
-                ref="operateContent"></div>
-            <Operate ref="operate"></Operate>
+                :style="{transformOrigin: '0 0', width: `${page.width}px`, height: `${page.height}px`, position: 'relative' }"
+                ref="operateContent" ></div>
+            <Operate ref="operate" ></Operate>
         </div>
     </div>
 </template>

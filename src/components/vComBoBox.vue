@@ -62,7 +62,7 @@ defineProps({
 .v-combo-box {
       width: 230px;
       height: 30px;
-      margin: 5px 0;
+      margin: 0 0 5px 0;
       display: flex;
       span {
             font-size: 14px;
